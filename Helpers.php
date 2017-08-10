@@ -4,6 +4,7 @@ class Helpers {
 
     private static $String;
     private static $Limite;
+    private static $Format;
 
     public static function limitWords($string, $limite, $terminarCom = null) {
         self::$String = strip_tags(trim($string));
@@ -36,6 +37,7 @@ class Helpers {
 
     public static function slug($string) {
         self::$String = (string) $string;
+
         self::$String = preg_replace('/[\t\n]/', ' ', self::$String);
         self::$String = preg_replace('/\s{2,}/', ' ', self::$String);
 
@@ -146,7 +148,7 @@ class Helpers {
             'ª' => '-',
             ':' => '-',
             '!' => '-',
-            '@' => '-',
+            '¨' => '-',
             ' ' => '-'
         );
 
@@ -157,7 +159,17 @@ class Helpers {
         return self::$String;
     }
 
-}
+    public static function isMail(string $email) {
+        self::$String = $email;
+        self::$Format = '/[a-z0-9_\.\-]+@[a-z0-9_\.\-]*[a-z0-9_\.\-]+\.[a-z]{2,4}$/';
 
-//Fim da Classe Helpers
+        if (preg_match(self::$Format, self::$String)):
+            return true;
+        else:
+            return false;
+        endif;
+    }
+
+
+}//Fim da Classe Helpers
 
