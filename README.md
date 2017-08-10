@@ -15,6 +15,7 @@ limita a quantidade de caracteres de uma string.
 <strong>Helpers::slug($string)</strong>
 <br />
 cria os famosos "slug" ou url amigável
+<br />
 <strong>Exemplo:</strong> se tivermos uma url assim 'site.com.br/produto/15", podemos criar um slug pra ficar assim: 'seusite.com.br/produto/camiseta-amarela-tam-p'
 <br />
 <strong>Helpers::isMail(string $email)</strong>
