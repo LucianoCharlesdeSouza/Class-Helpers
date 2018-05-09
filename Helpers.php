@@ -5,6 +5,38 @@ class Helpers {
     private static $String;
     private static $Limite;
     private static $Format;
+    private static $Data;
+    
+    public static function CPF($Cpf) {
+        self::$Data = preg_replace('/[^0-9]/', '', $Cpf);
+
+        if (strlen(self::$Data) != 11):
+            return false;
+        endif;
+
+        $digitoA = 0;
+        $digitoB = 0;
+
+        for ($i = 0, $x = 10; $i <= 8; $i++, $x--) {
+            $digitoA += self::$Data[$i] * $x;
+        }
+
+        for ($i = 0, $x = 11; $i <= 9; $i++, $x--) {
+            if (str_repeat($i, 11) == self::$Data) {
+                return false;
+            }
+            $digitoB += self::$Data[$i] * $x;
+        }
+
+        $somaA = (($digitoA % 11) < 2 ) ? 0 : 11 - ($digitoA % 11);
+        $somaB = (($digitoB % 11) < 2 ) ? 0 : 11 - ($digitoB % 11);
+
+        if ($somaA != self::$Data[9] || $somaB != self::$Data[10]) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public static function limitWords($string, $limite, $terminarCom = null) {
         self::$String = strip_tags(trim($string));
