@@ -24,10 +24,13 @@ valida através de expressões regulares o formato do e-mail passado.
 <br>
 <strong>Helpers::CPF();</strong>
 <br/>
-<br>Exemplo de Uso:         if(Helpers::CPF('111.111.111-11')){
-            echo "valido";
-        }else{
-            echo "invalido";
-        }
-        <br/>
+# Exemplo de Uso:  
+
+```php
+if(Helpers::CPF('111.111.111-11')){
+   echo "valido";
+ }else{
+   echo "invalido";
+ }
+```        
 
